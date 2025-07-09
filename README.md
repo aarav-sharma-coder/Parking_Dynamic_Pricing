@@ -29,26 +29,26 @@ Prices are computed in real time via a streaming data pipeline, enabling smart, 
 
 ---
 
-## 🧱 Architecture Diagram
+## 🏗️ System Architecture
+
+<!-- Generated with [Mermaid Live Editor](https://mermaid-js.github.io/mermaid-live-editor)-->
 
 ```mermaid
-flowchart TD
-    A[📥 CSV Input Data<br> (dataset.csv)] --> B[🔁 Pathway Streaming Engine]
-    B --> C1[📊 Feature Engineering]
-    C1 --> C2[🧠 Model 1<br> Baseline (Occupancy)]
-    C1 --> C3[📈 Model 2<br> Demand-Based]
-    C1 --> C4[🏙️ Model 3<br> Competitive + Rerouting]
-    
-    C2 --> D[📉 Real-Time Pricing Output]
-    C3 --> D
-    C4 --> D
+graph TD
+    A[Parking Lot Data Stream] --> B[Real-Time Simulation with Pathway]
+    B --> C[Demand-Based Pricing Logic]
+    C --> D[Competitive Price Adjustment with Haversine]
+    D --> E[Rerouting Suggestions if Necessary]
+    E --> F[Real-Time Bokeh Visualizations]
+```
 
-    D --> E[📍 Bokeh Visualizations<br> per garage]
-🧬 System Workflow
-🔁 Data Ingestion (Pathway)
-Real-time replay of dataset.csv using Pathway's replay_csv connector.
+**Workflow Summary:**
 
-Each row represents the state of a parking lot at a 30-minute interval.
+* Real-time parking data enters via a simulated stream
+* Prices adjust based on demand, occupancy, and traffic
+* Competitor pricing and proximity assessed with Numpy Haversine
+* If lots are full or overpriced, rerouting suggestions provided
+* Price trends visualized live using Bokeh
 
 🧠 Pricing Models
 Model	Description
